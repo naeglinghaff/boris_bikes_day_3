@@ -11,7 +11,7 @@ A program that simulates the 'boris bikes' of London.
 
 Run `ruby borisBikes.rb` from command line
 
-
+THIS IS A TEST
 <!-- `command_to_start` (e.g. `rackup` or `rails s`) -->
 <!-- Navigate to `http://localhost:4567/`
 ## Running tests
