@@ -4,17 +4,12 @@ require "bike"
 describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
 
-  it 'accepts a greater capacity than the default when specified by an admin' do
-    bike = Bike.new
-    station = DockingStation.new(30)
-    expect { 30.times {station.dock_bike(bike)} }.not_to raise_error
-  end
+  context '#initialize'
 
-  it 'accepts the default capacity when a capactiy is not specified' do
-    station = DockingStation.new()
-    bike = Bike.new
-    expect { 30.times {station.dock_bike(bike)} }.to raise_error("Docking station full")
-  end
+    it 'accepts a greater capacity than the default when specified by an admin' do
+      station = DockingStation.new(30)
+      expect { 30.times {station.dock_bike(Bike.new)} }.not_to raise_error
+    end
 
   context '#release_bike'
 
@@ -36,14 +31,12 @@ describe DockingStation do
   end
 
   it 'raises an error if there is no capacity' do
-    bike = Bike.new
-    DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(bike) }
-    expect{subject.dock_bike(bike)}.to raise_error "Docking station full"
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(Bike.new) }
+    expect{subject.dock_bike(Bike.new)}.to raise_error "Docking station full"
   end
 
   it 'checks if there are docked bikes' do
-    bike = Bike.new
-    subject.dock_bike(bike)
+    subject.dock_bike(Bike.new)
     expect(subject.bikes.count).to eq 1
   end
 
