@@ -1,11 +1,19 @@
 require "docking_station"
+require "bike"
 
 describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
 
   it 'accepts a greater capacity than the default when specified by an admin' do
+    bike = Bike.new
     station = DockingStation.new(30)
-    expect { subject.dock_bike(30) }.not_to raise_error
+    expect { 30.times {station.dock_bike(bike)} }.not_to raise_error
+  end
+
+  it 'accepts the default capacity when a capactiy is not specified' do
+    station = DockingStation.new()
+    bike = Bike.new
+    expect { 30.times {station.dock_bike(bike)} }.to raise_error("Docking station full")
   end
 
   context '#release_bike'

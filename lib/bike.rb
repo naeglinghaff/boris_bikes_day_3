@@ -1,7 +1,4 @@
 class Bike
-  # def initialize
-  #   @bike = bike
-  # end
 
   def working?
     return true
